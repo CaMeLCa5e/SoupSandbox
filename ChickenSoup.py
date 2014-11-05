@@ -1,13 +1,7 @@
-"""Beautiful soup test bs4
-"""
-from bs4 import BeautifulSoup
+import bs4
 import urllib2
-
-redditFile = urllib2.urlopen("http://www.reddit.com")
-redditHtml = redditFile.read()
-redditFile.close()
-
-soup = BeautifulSoup(redditHtml)
-redditAll = soup.find_all("a")
-for links in soup.find_all('a'):
-    print (links.get('href'))
+ 
+webpage = urllib2.urlopen('http://www.reddit.com')
+soup = bs4.BeautifulSoup(webpage)
+for anchor in soup.find_all('a'):
+    print(anchor.get('href', '/'))
